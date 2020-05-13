@@ -10,14 +10,15 @@
 
 
 // Update these with values suitable for your network.
-const char* ssid = "Malinda-MiFi";
-const char* password = "malinda@1234";
+const char* ssid = "Wifi_Name";
+const char* password = "Wifi_password";
 
 //Backend credentials
-const char* mqtt_server = "52.221.141.22";
-String DEVICE_SERIAL = "569829149321690" ; //update the device serial according to the serial given by the consumer portal
-const char* EVENT_TOPIC = "genericDevice/common";
-String SUB_TOPIC_STRING = "genericDevice/" + DEVICE_SERIAL + "/sub";
+const char* mqtt_server = "mqtt.iot.ideamart.io";
+const char* mqtt_port = 1883;
+
+const char* EVENT_TOPIC = "testing/tester/v1/common";
+String SUB_TOPIC_STRING = "+/2951212455078424/testing/tester/v1/sub";
 
 WiFiClient espClient;
 PubSubClient client(espClient);
@@ -91,7 +92,7 @@ void reconnect() {
 void setup() {
   Serial.begin(115200);
   setup_wifi();
-  client.setServer(mqtt_server, 1883);
+  client.setServer(mqtt_server, mqtt_port);
   client.setCallback(callback);
 
 }
